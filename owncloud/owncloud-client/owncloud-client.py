@@ -30,7 +30,6 @@ class subinfo(info.infoclass):
         self.buildDependencies["craft/craft-blueprints-owncloud"] = None
         self.buildDependencies["dev-utils/cmake"] = None
         self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
-        self.buildDependencies["dev-utils/breakpad-tools"] = None
         self.runtimeDependencies["libs/sparkle"] = None
         self.runtimeDependencies["libs/zlib"] = None
         self.runtimeDependencies["libs/sqlite"] = None
@@ -48,6 +47,8 @@ class subinfo(info.infoclass):
 
         if self.options.dynamic.buildTests:
             self.buildDependencies["dev-utils/cmocka"] = None
+        if self.options.dynamic.enableCrashReporter:
+            self.buildDependencies["dev-utils/breakpad"] = None
 
 
 
