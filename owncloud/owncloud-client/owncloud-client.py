@@ -21,9 +21,9 @@ class subinfo(info.infoclass):
                                           tarballInstallSrc="owncloudclient-${VERSION}",
                                           gitUrl="[git]https://github.com/filesfm/client")
 
-        self.description = "ownCloud Desktop Client"
-        self.displayName = "ownCloud"
-        self.webpage = "https://owncloud.org"
+        self.description = "Files.fm Desktop Client"
+        self.displayName = "Files.fm Sync"
+        self.webpage = "https://files.fm/sync-share"
 
     def setDependencies(self):
         self.buildDependencies["craft/craft-blueprints-owncloud"] = None
@@ -90,7 +90,7 @@ class Package(CMakePackageBase):
 
     @property
     def applicationExecutable(self):
-        return os.environ.get('ApplicationExecutable', 'owncloud')
+        return os.environ.get('ApplicationExecutable', 'files.fm-sync')
 
     def fetch(self):
         if self.subinfo.options.dynamic.buildVfsWin:
@@ -214,9 +214,9 @@ class Package(CMakePackageBase):
         self.blacklist_file.append(os.path.join(self.packageDir(), 'blacklist.txt'))
         self.defines["appname"] = self.applicationExecutable
         self.defines["apppath"] = "Applications/KDE/" + self.applicationExecutable + ".app"
-        self.defines["company"] = "ownCloud GmbH"
+        self.defines["company"] = "Files.fm SIA"
         self.defines["shortcuts"] = [{"name" : self.subinfo.displayName , "target" : f"{self.defines['appname']}{CraftCore.compiler.executableSuffix}", "description" : self.subinfo.description}]
-        self.defines["icon"] = Path(self.buildDir()) / "src/gui/owncloud.ico"
+        self.defines["icon"] = Path(self.buildDir()) / "src/gui/files.fm-sync.ico"
         self.defines["pkgproj"] = Path(self.buildDir()) / "admin/osx/macosx.pkgproj"
         ver = self.owncloudVersion()
         if ver:
